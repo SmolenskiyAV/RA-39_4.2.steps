@@ -21,7 +21,7 @@ export default function Form() {  // КОМПОНЕНТ Формы
   document.addEventListener("DOMContentLoaded", () => {
     document.querySelector('input').focus();
   });
-      
+  
   const handleDateChange = evt => { // функция обработки набора символов внутри input-а "ДАТА"
     
     setForm(prevForm => ({...prevForm, date_input: evt.target.value}));
@@ -65,7 +65,7 @@ export default function Form() {  // КОМПОНЕНТ Формы
       setForm(prevForm => ({...prevForm, distance_input: '', date_input: ''}));
       document.querySelector('input').focus();
     };
-  }
+  };
 
   const handleClick = evt => { // ОБРАБОТКА НАЖАТИЯ КНОПКИ "добавить"
     
@@ -79,6 +79,13 @@ export default function Form() {  // КОМПОНЕНТ Формы
       setForm(prevForm => ({...prevForm, distance_input: '', date_input: ''}));
       document.querySelector('input').focus();
     };
+  };
+
+  const handleRemove = evt => {  // ОБРАБОТКА НАЖАТИЯ КРЕСТИКА "удалить", передаваемая в компонент <List /> 
+    const { target } = evt;
+    const id = target.parentElement.id;
+    console.log('removed ID = ', id);   // КОНТРОЛЬНАЯ ТОЧКА
+    setItemsObj(itemsObj.filter(o => o.id !== id));
   };
 
   return (
@@ -107,7 +114,7 @@ export default function Form() {  // КОМПОНЕНТ Формы
               </label>
               <button className="tasks__add" onClick={handleClick} id="tasks__add">Добавить</button>
             </form>
-            <List itemsObj={itemsObj} />
+            <List itemsObj={itemsObj} onRemove={handleRemove}/>
           </div>
         </div>
     </main>

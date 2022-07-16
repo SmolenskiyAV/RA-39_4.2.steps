@@ -1,9 +1,13 @@
 /* Local Componet`s Styles */
 
 button {
-    margin: 0 !important;
-  }
+    margin: 8px !important;
+   }
   
+  .content {
+    margin: 50px;
+  }
+
   .card {
     width: 600px;
   }
@@ -73,3 +77,10 @@ button {
     cursor: pointer;
   }
   
+  .task__edit {
+    color: #0c4b0f;
+    font-size: 30px;
+    text-decoration: none;
+    cursor: pointer;
+    margin-right: 10px;
+  }

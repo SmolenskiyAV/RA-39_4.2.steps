@@ -20,7 +20,7 @@ export default function arrCombiner(dateValue, distanceValue) { // функци�
 
     const updatedItemArray = {id: nanoid(), date_str: dateValue, date_obj: date, distance: distance }; // формируем из входящего параметра новый/обновлённый элемент списка
 
-    console.log('updated Element is:')
+    console.log('updated Element is:');
     console.dir(updatedItemArray);  // КОНТРОЛЬНАЯ ТОЧКА
     console.log('=====================================');
 
@@ -38,7 +38,7 @@ export default function arrCombiner(dateValue, distanceValue) { // функци�
             };
         };
 
-        if (Date.parse(updatedItemArray.date_obj) >= (Date.parse(listArray[0].date_obj))) { // добавляем новый элемент в начало списка
+        if (Date.parse(updatedItemArray.date_obj) > (Date.parse(listArray[0].date_obj))) { // добавляем новый элемент в начало списка
                 console.log('pars updItem = ', Date.parse(updatedItemArray.date_obj));
                 console.log('listArray[0] = ', Date.parse(listArray[0].date_obj));
                 listArray.unshift(updatedItemArray);
@@ -46,10 +46,10 @@ export default function arrCombiner(dateValue, distanceValue) { // функци�
         };
 
         if (listArray.length > 1) {
-            for (let m = 1; m < listArray.length -1; m++) {    // если замены элемента не было и не было вставки в начало списка
+            for (let m = 1; m < listArray.length; m++) {    // если замены элемента не было и не было вставки в начало списка
 
                 if ((Date.parse(updatedItemArray.date_obj) < (Date.parse(listArray[m-1].date_obj))) && 
-                    (Date.parse(updatedItemArray.date_obj) >= (Date.parse(listArray[m].date_obj)))) {
+                    (Date.parse(updatedItemArray.date_obj) > (Date.parse(listArray[m].date_obj)))) {
                         console.log('pars updItem = ', Date.parse(updatedItemArray.date_obj));
                         console.log('listArray[middle] = ', Date.parse(listArray[m].date_obj));
                         listArray.splice(m, 0, updatedItemArray);   // добавляем новый элемент в середину списка
@@ -58,16 +58,14 @@ export default function arrCombiner(dateValue, distanceValue) { // функци�
             };
         };
 
-        if (Date.parse(updatedItemArray.date_obj) <= (Date.parse(listArray[listArray.length-1].date_obj))) { // добавляем новый элемент в конец списка
+        if (Date.parse(updatedItemArray.date_obj) < (Date.parse(listArray[listArray.length-1].date_obj))) { // добавляем новый элемент в конец списка
             console.log('pars updItem = ', Date.parse(updatedItemArray.date_obj));
             console.log('listArray[end] = ', Date.parse(listArray[listArray.length-1].date_obj));
             listArray.push(updatedItemArray);
             return listArray;
         };
-        //listArray.push(updatedItemArray);    // если замены элемента не было, то добавляем новый элемент в конец списка
-        //return listArray;
-        
+                
     } else listArray.push(updatedItemArray);    // добавляем новый элемент в пустой список
    
     return listArray;
-}
+};

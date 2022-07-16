@@ -67,7 +67,7 @@ export default function Form() {  // КОМПОНЕНТ Формы
     };
   }
 
-  const handleClick = evt => { // ОБРАБОТКА НАЖАТИЯ КНОПКИ
+  const handleClick = evt => { // ОБРАБОТКА НАЖАТИЯ КНОПКИ "добавить"
     
     if ((dateValue !== '') && (distanceValue !== '')) { // если все поля "input" корректно заполнены
       
@@ -92,7 +92,7 @@ export default function Form() {  // КОМПОНЕНТ Формы
                   className="tasks__input" 
                   name="date_input" 
                   id="date__input" 
-                  placeholder="Введите датау ДД.ММ.ГГ"
+                  placeholder="Введите датау"
                   value={form.date_input}
                   onChange={handleDateChange} />
               </label>

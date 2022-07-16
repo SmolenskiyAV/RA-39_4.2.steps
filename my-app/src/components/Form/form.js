@@ -37,7 +37,6 @@ export default function Form() {  // КОМПОНЕНТ Формы
       setForm(prevForm => ({...prevForm, date_input: evt.target.value}));
       dateValue = evt.target.value;
     }
-    console.log('current Date = ', evt.target.value); //КОНТРОЛЬНАЯ ТОЧКА
   }
 
   const handleDistanceChange = evt => { // функция обработки набора символов внутри input-а "Пройдено км"
@@ -48,8 +47,7 @@ export default function Form() {  // КОМПОНЕНТ Формы
       
       setForm(prevForm => ({...prevForm, distance_input: evt.target.value}));
       distanceValue = evt.target.value;
-      
-      console.log('current Distance = ', evt.target.value); //КОНТРОЛЬНАЯ ТОЧКА
+          
     } else {
       setForm(prevForm => ({...prevForm, distance_input: ''})) // очищаем поле
     }
@@ -59,12 +57,8 @@ export default function Form() {  // КОМПОНЕНТ Формы
     evt.preventDefault();
     if ((dateValue !== '') && (distanceValue !== '')) { // если все поля "input" корректно заполнены
       
-      setItemsObj(prevItemsObj => arrCombiner(dateValue, distanceValue));
-            
-      console.log('correct enter dateItem = ', dateValue);            //КОНТРОЛЬНАЯ ТОЧКА
-      console.log('correct enter distanceItem = ', distanceValue);    //КОНТРОЛЬНАЯ ТОЧКА
-      console.log('date of itemsObj = ', arrCombiner(dateValue, distanceValue).date);         //КОНТРОЛЬНАЯ ТОЧКА
-      console.log('distance of itemsObj = ', arrCombiner(dateValue, distanceValue).distance); //КОНТРОЛЬНАЯ ТОЧКА
+      let tempArr = arrCombiner(dateValue, distanceValue);
+      setItemsObj(prevItemsObj => tempArr);
       
       dateValue = '';
       distanceValue = '';
@@ -74,15 +68,11 @@ export default function Form() {  // КОМПОНЕНТ Формы
   }
 
   const handleClick = evt => { // ОБРАБОТКА НАЖАТИЯ КНОПКИ
-
+    
     if ((dateValue !== '') && (distanceValue !== '')) { // если все поля "input" корректно заполнены
       
-      setItemsObj(prevItemObj => arrCombiner(dateValue, distanceValue));
-            
-      console.log('correct enter dateItem = ', dateValue);            //КОНТРОЛЬНАЯ ТОЧКА
-      console.log('correct enter distanceItem = ', distanceValue);    //КОНТРОЛЬНАЯ ТОЧКА
-      console.log('date of itemObj = ', arrCombiner(dateValue, distanceValue).date);        //КОНТРОЛЬНАЯ ТОЧКА
-      console.log('distance of itemObj = ', arrCombiner(dateValue, distanceValue).distance); //КОНТРОЛЬНАЯ ТОЧКА
+      let tempArr = arrCombiner(dateValue, distanceValue);
+      setItemsObj(prevItemsObj => tempArr);
       
       dateValue = '';
       distanceValue = '';
